@@ -1,0 +1,152 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="GradleMigrationSettings" migrationVersion="1" />
+  <component name="GradleSettings">
+    <option name="linkedExternalProjectsSettings">
+      <GradleProjectSettings>
+        <option name="externalProjectPath" value="$PROJECT_DIR$" />
+        <option name="modules">
+          <set>
+            <option value="$PROJECT_DIR$" />
+            <option value="$PROJECT_DIR$/API-gateway" />
+            <option value="$PROJECT_DIR$/Comment-ms" />
+            <option value="$PROJECT_DIR$/Commons-ms" />
+            <option value="$PROJECT_DIR$/DiscoveryService" />
+            <option value="$PROJECT_DIR$/Image-ms" />
+            <option value="$PROJECT_DIR$/Post-ms" />
+            <option value="$PROJECT_DIR$/Security-ms" />
+            <option value="$PROJECT_DIR$/User-ms" />
+          </set>
+        </option>
+      </GradleProjectSettings>
+      <GradleProjectSettings>
+        <option name="externalProjectPath" value="$PROJECT_DIR$/API-Gateway" />
+        <option name="modules">
+          <set>
+            <option value="$PROJECT_DIR$" />
+            <option value="$PROJECT_DIR$/API-gateway" />
+            <option value="$PROJECT_DIR$/Comment-ms" />
+            <option value="$PROJECT_DIR$/Commons-ms" />
+            <option value="$PROJECT_DIR$/DiscoveryService" />
+            <option value="$PROJECT_DIR$/Image-ms" />
+            <option value="$PROJECT_DIR$/Post-ms" />
+            <option value="$PROJECT_DIR$/Security-ms" />
+            <option value="$PROJECT_DIR$/User-ms" />
+          </set>
+        </option>
+      </GradleProjectSettings>
+      <GradleProjectSettings>
+        <option name="externalProjectPath" value="$PROJECT_DIR$/Comment-ms" />
+        <option name="modules">
+          <set>
+            <option value="$PROJECT_DIR$" />
+            <option value="$PROJECT_DIR$/API-gateway" />
+            <option value="$PROJECT_DIR$/Comment-ms" />
+            <option value="$PROJECT_DIR$/Commons-ms" />
+            <option value="$PROJECT_DIR$/DiscoveryService" />
+            <option value="$PROJECT_DIR$/Image-ms" />
+            <option value="$PROJECT_DIR$/Post-ms" />
+            <option value="$PROJECT_DIR$/Security-ms" />
+            <option value="$PROJECT_DIR$/User-ms" />
+          </set>
+        </option>
+      </GradleProjectSettings>
+      <GradleProjectSettings>
+        <option name="externalProjectPath" value="$PROJECT_DIR$/Commons-ms" />
+        <option name="modules">
+          <set>
+            <option value="$PROJECT_DIR$" />
+            <option value="$PROJECT_DIR$/API-gateway" />
+            <option value="$PROJECT_DIR$/Comment-ms" />
+            <option value="$PROJECT_DIR$/Commons-ms" />
+            <option value="$PROJECT_DIR$/DiscoveryService" />
+            <option value="$PROJECT_DIR$/Image-ms" />
+            <option value="$PROJECT_DIR$/Post-ms" />
+            <option value="$PROJECT_DIR$/Security-ms" />
+            <option value="$PROJECT_DIR$/User-ms" />
+          </set>
+        </option>
+      </GradleProjectSettings>
+      <GradleProjectSettings>
+        <option name="externalProjectPath" value="$PROJECT_DIR$/DiscoveryService" />
+        <option name="modules">
+          <set>
+            <option value="$PROJECT_DIR$" />
+            <option value="$PROJECT_DIR$/API-gateway" />
+            <option value="$PROJECT_DIR$/Comment-ms" />
+            <option value="$PROJECT_DIR$/Commons-ms" />
+            <option value="$PROJECT_DIR$/DiscoveryService" />
+            <option value="$PROJECT_DIR$/Image-ms" />
+            <option value="$PROJECT_DIR$/Post-ms" />
+            <option value="$PROJECT_DIR$/Security-ms" />
+            <option value="$PROJECT_DIR$/User-ms" />
+          </set>
+        </option>
+      </GradleProjectSettings>
+      <GradleProjectSettings>
+        <option name="externalProjectPath" value="$PROJECT_DIR$/Image-ms" />
+        <option name="modules">
+          <set>
+            <option value="$PROJECT_DIR$" />
+            <option value="$PROJECT_DIR$/API-gateway" />
+            <option value="$PROJECT_DIR$/Comment-ms" />
+            <option value="$PROJECT_DIR$/Commons-ms" />
+            <option value="$PROJECT_DIR$/DiscoveryService" />
+            <option value="$PROJECT_DIR$/Image-ms" />
+            <option value="$PROJECT_DIR$/Post-ms" />
+            <option value="$PROJECT_DIR$/Security-ms" />
+            <option value="$PROJECT_DIR$/User-ms" />
+          </set>
+        </option>
+      </GradleProjectSettings>
+      <GradleProjectSettings>
+        <option name="externalProjectPath" value="$PROJECT_DIR$/Post-ms" />
+        <option name="modules">
+          <set>
+            <option value="$PROJECT_DIR$" />
+            <option value="$PROJECT_DIR$/API-gateway" />
+            <option value="$PROJECT_DIR$/Comment-ms" />
+            <option value="$PROJECT_DIR$/Commons-ms" />
+            <option value="$PROJECT_DIR$/DiscoveryService" />
+            <option value="$PROJECT_DIR$/Image-ms" />
+            <option value="$PROJECT_DIR$/Post-ms" />
+            <option value="$PROJECT_DIR$/Security-ms" />
+            <option value="$PROJECT_DIR$/User-ms" />
+          </set>
+        </option>
+      </GradleProjectSettings>
+      <GradleProjectSettings>
+        <option name="externalProjectPath" value="$PROJECT_DIR$/Security-ms" />
+        <option name="modules">
+          <set>
+            <option value="$PROJECT_DIR$" />
+            <option value="$PROJECT_DIR$/API-gateway" />
+            <option value="$PROJECT_DIR$/Comment-ms" />
+            <option value="$PROJECT_DIR$/Commons-ms" />
+            <option value="$PROJECT_DIR$/DiscoveryService" />
+            <option value="$PROJECT_DIR$/Image-ms" />
+            <option value="$PROJECT_DIR$/Post-ms" />
+            <option value="$PROJECT_DIR$/Security-ms" />
+            <option value="$PROJECT_DIR$/User-ms" />
+          </set>
+        </option>
+      </GradleProjectSettings>
+      <GradleProjectSettings>
+        <option name="externalProjectPath" value="$PROJECT_DIR$/User-ms" />
+        <option name="modules">
+          <set>
+            <option value="$PROJECT_DIR$" />
+            <option value="$PROJECT_DIR$/API-gateway" />
+            <option value="$PROJECT_DIR$/Comment-ms" />
+            <option value="$PROJECT_DIR$/Commons-ms" />
+            <option value="$PROJECT_DIR$/DiscoveryService" />
+            <option value="$PROJECT_DIR$/Image-ms" />
+            <option value="$PROJECT_DIR$/Post-ms" />
+            <option value="$PROJECT_DIR$/Security-ms" />
+            <option value="$PROJECT_DIR$/User-ms" />
+          </set>
+        </option>
+      </GradleProjectSettings>
+    </option>
+  </component>
+</project>

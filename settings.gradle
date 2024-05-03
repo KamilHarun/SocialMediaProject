@@ -1,0 +1,10 @@
+rootProject.name = 'SocialMedia'
+
+include 'User-ms'
+include 'Post-ms'
+include 'Commons-ms'
+include 'Comment-ms'
+include 'Image-ms'
+include 'Security-ms'
+include 'DiscoveryService'
+include 'API-gateway'
