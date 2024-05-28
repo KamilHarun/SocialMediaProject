@@ -1,0 +1,12 @@
+spring:
+  security:
+    key: "U29jaWFsbWVkaWFwcm9qZWN0MjAyNFNvY2lhbG1lZGlhcHJvamVjdDIwMjRTb2NpYWxtZWRpYXByb2plY3QyMDI0"
+
+  datasource:
+    url: jdbc:postgresql://localhost:5435/
+    username: postgres
+    password: password
+  jpa:
+    hibernate:
+      ddl-auto: update
+    database-platform: org.hibernate.dialect.PostgreSQLDialect

@@ -20,5 +20,5 @@ public interface UserService {
 
     Page<UserResponseDto> findWithSpec(String name, String surname, String phoneNumber, Pageable pageable);
 
-    UserResponseDto findByAddressId(Long userId, Long addressId);
+//    UserResponseDto findByAddressId(Long userId, Long addressId);
 }

@@ -30,15 +30,15 @@ ext {
 dependencies {
     implementation project(':Commons-ms')
     implementation project(':Security-ms')
-    implementation 'org.mapstruct:mapstruct:1.4.2.Final'
     implementation 'org.yaml:snakeyaml:2.0'
     implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
+    implementation 'org.mapstruct:mapstruct:1.4.2.Final'
+    annotationProcessor 'org.mapstruct:mapstruct-processor:1.4.2.Final'
     implementation 'org.springframework.boot:spring-boot-starter-security'
     implementation 'org.springframework.boot:spring-boot-starter-web'
     implementation project(path: ':User-ms')
     compileOnly 'org.projectlombok:lombok'
     runtimeOnly 'org.postgresql:postgresql'
-    annotationProcessor 'org.projectlombok:lombok'
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
     testImplementation 'org.springframework.security:spring-security-test'
     implementation 'org.springframework.cloud:spring-cloud-starter-netflix-eureka-client'

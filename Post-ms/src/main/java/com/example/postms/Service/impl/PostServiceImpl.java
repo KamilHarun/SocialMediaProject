@@ -1,17 +1,16 @@
 package com.example.postms.Service.impl;
 
+import com.example.commonsms.Dto.UserResponseDto;
 import com.example.commonsms.Exceptions.NotFoundException;
 import com.example.commonsms.Exceptions.UnauthorizedException;
 import com.example.postms.Config.PostMapper;
 import com.example.postms.Dto.PostRequestDto;
 import com.example.postms.Dto.Response.PostResponseDto;
-import com.example.postms.Dto.Response.UserResponseDto;
 import com.example.postms.Feign.UserFeign;
 import com.example.postms.Model.Post;
 import com.example.postms.Repository.PostRepo;
 import com.example.postms.Service.PostService;
 import lombok.RequiredArgsConstructor;
-import org.mapstruct.factory.Mappers;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.Pageable;
@@ -60,6 +59,7 @@ public class PostServiceImpl implements PostService {
 
     }
 
+    @Override
     public PostResponseDto findById(Long id) {
         Optional<Post> postOptional = postRepo.findById(id);
         if (postOptional.isPresent()) {

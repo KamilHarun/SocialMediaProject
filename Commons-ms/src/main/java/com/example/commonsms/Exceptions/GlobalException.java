@@ -69,6 +69,13 @@ public class GlobalException {
         return ResponseEntity.status(UNAUTHORIZED).body(error);
     }
 
+    @ExceptionHandler(EmailSendException.class)
+    public ResponseEntity<Map<String,String>> handleEmailException (EmailSendException emailSendException){
+        Map<String,String> error = new HashMap<>();
+        error.put("error message :" , emailSendException.getLocalizedMessage());
+        return ResponseEntity.status(INTERNAL_SERVER_ERROR).body(error);
+    }
+
 
 }
 

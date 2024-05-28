@@ -42,6 +42,7 @@ public class UserServiceImpl implements UserService {
     private final UserMapper userMapper;
 
 
+    @Override
     public JwtResponseDto signIn(RegisterDto registerDto) {
 
         Optional<Address> address = Optional.ofNullable(addressRepo.findById(registerDto.getAddressId()).orElseThrow(() ->
@@ -115,7 +116,6 @@ public class UserServiceImpl implements UserService {
                 .build();
     }
 
-
     @Override
     public UserResponseDto findByEmail(LogInDto logInDto) {
         Optional<Users> userOptional = userRepo.findByEmail(logInDto.getEmail());
@@ -151,17 +151,17 @@ public class UserServiceImpl implements UserService {
                 .build());
     }
 
-    @Override
-    public UserResponseDto findByAddressId(Long userId, Long addressId) {
-        Users user = userRepo.findByUserIdAndAddressId(userId, addressId);
-
-        if (user == null) {
-            throw new ResourceNotFoundException("User not found for userId: " + userId + " and addressId: " + addressId);
-        }
-        UserResponseDto userResponseDto = userMapper.UserToDto(user);
-
-        return userResponseDto;
-    }
+//    @Override
+//    public UserResponseDto findByAddressId(Long userId, Long addressId) {
+//        Users user = userRepo.findByUserIdAndAddressId(userId, addressId);
+//
+//        if (user == null) {
+//            throw new ResourceNotFoundException("User not found for userId: " + userId + " and addressId: " + addressId);
+//        }
+//        UserResponseDto userResponseDto = userMapper.UserToDto(user);
+//
+//        return userResponseDto;
+//    }
 
 
 }

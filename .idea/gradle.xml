@@ -13,6 +13,7 @@
             <option value="$PROJECT_DIR$/Commons-ms" />
             <option value="$PROJECT_DIR$/DiscoveryService" />
             <option value="$PROJECT_DIR$/Image-ms" />
+            <option value="$PROJECT_DIR$/Message-ms" />
             <option value="$PROJECT_DIR$/Post-ms" />
             <option value="$PROJECT_DIR$/Security-ms" />
             <option value="$PROJECT_DIR$/User-ms" />
@@ -29,6 +30,7 @@
             <option value="$PROJECT_DIR$/Commons-ms" />
             <option value="$PROJECT_DIR$/DiscoveryService" />
             <option value="$PROJECT_DIR$/Image-ms" />
+            <option value="$PROJECT_DIR$/Message-ms" />
             <option value="$PROJECT_DIR$/Post-ms" />
             <option value="$PROJECT_DIR$/Security-ms" />
             <option value="$PROJECT_DIR$/User-ms" />
@@ -45,6 +47,7 @@
             <option value="$PROJECT_DIR$/Commons-ms" />
             <option value="$PROJECT_DIR$/DiscoveryService" />
             <option value="$PROJECT_DIR$/Image-ms" />
+            <option value="$PROJECT_DIR$/Message-ms" />
             <option value="$PROJECT_DIR$/Post-ms" />
             <option value="$PROJECT_DIR$/Security-ms" />
             <option value="$PROJECT_DIR$/User-ms" />
@@ -61,6 +64,7 @@
             <option value="$PROJECT_DIR$/Commons-ms" />
             <option value="$PROJECT_DIR$/DiscoveryService" />
             <option value="$PROJECT_DIR$/Image-ms" />
+            <option value="$PROJECT_DIR$/Message-ms" />
             <option value="$PROJECT_DIR$/Post-ms" />
             <option value="$PROJECT_DIR$/Security-ms" />
             <option value="$PROJECT_DIR$/User-ms" />
@@ -77,6 +81,7 @@
             <option value="$PROJECT_DIR$/Commons-ms" />
             <option value="$PROJECT_DIR$/DiscoveryService" />
             <option value="$PROJECT_DIR$/Image-ms" />
+            <option value="$PROJECT_DIR$/Message-ms" />
             <option value="$PROJECT_DIR$/Post-ms" />
             <option value="$PROJECT_DIR$/Security-ms" />
             <option value="$PROJECT_DIR$/User-ms" />
@@ -93,6 +98,24 @@
             <option value="$PROJECT_DIR$/Commons-ms" />
             <option value="$PROJECT_DIR$/DiscoveryService" />
             <option value="$PROJECT_DIR$/Image-ms" />
+            <option value="$PROJECT_DIR$/Message-ms" />
+            <option value="$PROJECT_DIR$/Post-ms" />
+            <option value="$PROJECT_DIR$/Security-ms" />
+            <option value="$PROJECT_DIR$/User-ms" />
+          </set>
+        </option>
+      </GradleProjectSettings>
+      <GradleProjectSettings>
+        <option name="externalProjectPath" value="$PROJECT_DIR$/Message-ms" />
+        <option name="modules">
+          <set>
+            <option value="$PROJECT_DIR$" />
+            <option value="$PROJECT_DIR$/API-gateway" />
+            <option value="$PROJECT_DIR$/Comment-ms" />
+            <option value="$PROJECT_DIR$/Commons-ms" />
+            <option value="$PROJECT_DIR$/DiscoveryService" />
+            <option value="$PROJECT_DIR$/Image-ms" />
+            <option value="$PROJECT_DIR$/Message-ms" />
             <option value="$PROJECT_DIR$/Post-ms" />
             <option value="$PROJECT_DIR$/Security-ms" />
             <option value="$PROJECT_DIR$/User-ms" />
@@ -109,6 +132,7 @@
             <option value="$PROJECT_DIR$/Commons-ms" />
             <option value="$PROJECT_DIR$/DiscoveryService" />
             <option value="$PROJECT_DIR$/Image-ms" />
+            <option value="$PROJECT_DIR$/Message-ms" />
             <option value="$PROJECT_DIR$/Post-ms" />
             <option value="$PROJECT_DIR$/Security-ms" />
             <option value="$PROJECT_DIR$/User-ms" />
@@ -125,6 +149,7 @@
             <option value="$PROJECT_DIR$/Commons-ms" />
             <option value="$PROJECT_DIR$/DiscoveryService" />
             <option value="$PROJECT_DIR$/Image-ms" />
+            <option value="$PROJECT_DIR$/Message-ms" />
             <option value="$PROJECT_DIR$/Post-ms" />
             <option value="$PROJECT_DIR$/Security-ms" />
             <option value="$PROJECT_DIR$/User-ms" />
@@ -141,6 +166,7 @@
             <option value="$PROJECT_DIR$/Commons-ms" />
             <option value="$PROJECT_DIR$/DiscoveryService" />
             <option value="$PROJECT_DIR$/Image-ms" />
+            <option value="$PROJECT_DIR$/Message-ms" />
             <option value="$PROJECT_DIR$/Post-ms" />
             <option value="$PROJECT_DIR$/Security-ms" />
             <option value="$PROJECT_DIR$/User-ms" />

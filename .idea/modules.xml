@@ -18,6 +18,7 @@
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/-17830520/SocialMedia.Image-ms.iml" filepath="$PROJECT_DIR$/.idea/modules/-17830520/SocialMedia.Image-ms.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/-17830520/SocialMedia.Image-ms.main.iml" filepath="$PROJECT_DIR$/.idea/modules/-17830520/SocialMedia.Image-ms.main.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/-17830520/SocialMedia.Image-ms.test.iml" filepath="$PROJECT_DIR$/.idea/modules/-17830520/SocialMedia.Image-ms.test.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/-156877988/SocialMedia.Message-ms.main.iml" filepath="$PROJECT_DIR$/.idea/modules/-156877988/SocialMedia.Message-ms.main.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/Post-ms/SocialMedia.Post-ms.iml" filepath="$PROJECT_DIR$/.idea/modules/Post-ms/SocialMedia.Post-ms.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/Post-ms/SocialMedia.Post-ms.main.iml" filepath="$PROJECT_DIR$/.idea/modules/Post-ms/SocialMedia.Post-ms.main.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/Post-ms/SocialMedia.Post-ms.test.iml" filepath="$PROJECT_DIR$/.idea/modules/Post-ms/SocialMedia.Post-ms.test.iml" />
@@ -32,6 +33,10 @@
       <module fileurl="file://$PROJECT_DIR$/User-ms/User-ms.iml" filepath="$PROJECT_DIR$/User-ms/User-ms.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/User-ms.main.iml" filepath="$PROJECT_DIR$/.idea/modules/User-ms.main.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/User-ms.test.iml" filepath="$PROJECT_DIR$/.idea/modules/User-ms.test.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/-1575710757/com.Mypoject.SocialMedia.Commons-ms.main.iml" filepath="$PROJECT_DIR$/.idea/modules/-1575710757/com.Mypoject.SocialMedia.Commons-ms.main.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/-1472482877/com.Mypoject.SocialMedia.Post-ms.main.iml" filepath="$PROJECT_DIR$/.idea/modules/-1472482877/com.Mypoject.SocialMedia.Post-ms.main.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/1856071459/com.Mypoject.SocialMedia.Security-ms.main.iml" filepath="$PROJECT_DIR$/.idea/modules/1856071459/com.Mypoject.SocialMedia.Security-ms.main.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/-1228404040/com.Mypoject.SocialMedia.User-ms.main.iml" filepath="$PROJECT_DIR$/.idea/modules/-1228404040/com.Mypoject.SocialMedia.User-ms.main.iml" />
     </modules>
   </component>
 </project>

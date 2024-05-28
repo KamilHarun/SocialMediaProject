@@ -95,10 +95,10 @@ public class UserController {
         return new ResponseEntity<>(userService.findWithSpec(name,surname,phoneNumber,pageable) ,OK);
     }
 
-    @GetMapping("/{userId}/{addressId}")
-    public ResponseEntity<UserResponseDto> getUserWithAddressId(@PathVariable Long userId, @PathVariable Long addressId) {
-        return new ResponseEntity<>(userService.findByAddressId(userId, addressId), OK);
-    }
+//    @GetMapping("/{userId}/{addressId}")
+//    public ResponseEntity<UserResponseDto> getUserWithAddressId(@PathVariable Long userId, @PathVariable Long addressId) {
+//        return new ResponseEntity<>(userService.findByAddressId(userId, addressId), OK);
+//    }
 
 
 

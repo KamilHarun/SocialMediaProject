@@ -24,6 +24,7 @@ public interface UserRepo extends JpaRepository<Users , Long> {
     )
     Page<Users> findWithSpec(String name, String surname, String phoneNumber, Pageable pageable);
 
-    @Query
-    Users findByUserIdAndAddressId(Long userId, Long addressId);
+//    @Query
+//    Users findByUserIdAndAddressId(Long userId, Long addressId);
+//}
 }

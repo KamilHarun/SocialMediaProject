@@ -26,7 +26,7 @@ public class SecurityConfig extends GeneralConfig {
 
                 .requestMatchers(HttpMethod.POST, "/api/v1/users/register").permitAll()
                 .requestMatchers(HttpMethod.POST, "/api/v1/users/login").permitAll()
-                .requestMatchers( HttpMethod.GET, "/api/v1/addresses/**").authenticated()
+                .requestMatchers("/api/v1/addresses").permitAll()
                 .requestMatchers(HttpMethod.GET , "/api/v1/users/findById").permitAll()
                 .requestMatchers(HttpMethod.GET , "/api/v1/users/all").permitAll()
                 .requestMatchers("/swagger-ui.html", "/swagger-ui/**", "/v3/api-docs/**").permitAll()

@@ -1,6 +1,5 @@
 package com.example.userms.Service.Impl;
 
-
 import com.example.commonsms.Exceptions.AddressExistException;
 import com.example.commonsms.Exceptions.NotFoundException;
 import com.example.userms.Config.AddressMapper;
@@ -29,7 +28,7 @@ public class AddressServiceImpl implements AddressService {
 
 
     @Override
-    public Long createAddress(AddressRequestDto addressRequestDto) {
+    public Long create(AddressRequestDto addressRequestDto) {
         Optional<Address> existingAddress = addressRepo.findById(addressRequestDto.getId());
         if (existingAddress.isPresent()) {
             throw new AddressExistException("Address already exists");

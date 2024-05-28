@@ -1,7 +1,6 @@
 package com.example.postms.Service.impl;
 
 import com.example.commonsms.Exceptions.NotFoundException;
-import com.example.postms.Dto.Response.UserResponseDto;
 import com.example.postms.Feign.UserFeign;
 import com.example.postms.Model.Likes;
 import com.example.postms.Model.Post;

@@ -27,5 +27,5 @@ eureka:
 server:
   port: 0
 
-user-ms:
-  url: http://localhost:8081
+#user-ms:
+#  url: http://localhost:8081
