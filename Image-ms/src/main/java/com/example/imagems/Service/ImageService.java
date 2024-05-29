@@ -1,9 +1,11 @@
 package com.example.imagems.Service;
 
+import com.example.imagems.Model.Image;
 import org.springframework.web.multipart.MultipartFile;
 
-public interface ImageService {
-    String uploadImage(MultipartFile file);
+import java.io.IOException;
 
-    void deleteImage(String imageId);
+public interface ImageService {
+    Image uploadImage(MultipartFile file) throws IOException;
+
 }

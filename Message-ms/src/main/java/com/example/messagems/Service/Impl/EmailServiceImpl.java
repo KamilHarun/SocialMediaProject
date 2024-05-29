@@ -34,4 +34,5 @@ public class EmailServiceImpl implements EmailService {
             throw new EmailSendException("Failed to send email to " + emailDTO.getTo());
         }
     }
+
 }

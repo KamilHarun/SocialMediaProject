@@ -30,17 +30,17 @@ public class MessageServiceImpl implements MessageService {
     public MessageResponseDto send(String authorizationHeader, MessageRequestDto messageRequestDto) {
         UserResponseDto sender = userFeign.findById(authorizationHeader, messageRequestDto.getSenderId());
         if (sender == null) {
-            throw new NotFoundException("Gönderen bulunamadı");
+            throw new NotFoundException("Sender not found");
         }
 
         UserResponseDto receiver = userFeign.findById(authorizationHeader, messageRequestDto.getReceiverId());
         if (receiver == null) {
-            throw new NotFoundException("Alıcı bulunamadı");
+            throw new NotFoundException("Receiver not found");
         }
 
         String content = messageRequestDto.getContent();
         if (content == null || content.isEmpty()) {
-            throw new IllegalArgumentException("Mesaj içeriği boş olamaz");
+            throw new IllegalArgumentException("Message content cannot be empty");
         }
 
         Message message = Message.builder()

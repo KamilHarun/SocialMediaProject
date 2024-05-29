@@ -1,5 +1,6 @@
 package com.example.userms.Service.Impl;
 
+import com.example.commonsms.Dto.EmailDto;
 import com.example.commonsms.Exceptions.*;
 import com.example.securityms.config.JwtService;
 import com.example.userms.Config.UserMapper;
@@ -9,6 +10,7 @@ import com.example.userms.Dto.Response.JwtResponseDto;
 import com.example.userms.Dto.Response.UserResponseDto;
 import com.example.userms.Enums.UserAuthority;
 import com.example.userms.Enums.UserType;
+import com.example.userms.Feign.EmailFeign;
 import com.example.userms.Model.Address;
 import com.example.userms.Model.Authority;
 import com.example.userms.Model.Users;
@@ -16,11 +18,11 @@ import com.example.userms.Repository.AddressRepo;
 import com.example.userms.Repository.UserRepo;
 import com.example.userms.Service.UserService;
 import lombok.RequiredArgsConstructor;
-import org.apache.kafka.common.errors.ResourceNotFoundException;
 import org.mapstruct.factory.Mappers;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.Pageable;
+import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -40,6 +42,7 @@ public class UserServiceImpl implements UserService {
     private final AddressRepo addressRepo;
     private final JwtService jwtService;
     private final UserMapper userMapper;
+    private final EmailFeign emailFeign;
 
 
     @Override
@@ -81,12 +84,13 @@ public class UserServiceImpl implements UserService {
                 .authorities(authorities)
                 .build();
 
+        ResponseEntity<String> stringResponseEntity = emailFeign.sendEmail(EmailDto);
 
         String token = jwtService.generateToken((org.springframework.security.core.userdetails.User) userDetails);
-        return JwtResponseDto.builder()
-                .jwt(token)
-                .build();
-    }
+            return JwtResponseDto.builder()
+                    .jwt(token)
+                    .build();
+        }
 
     @Override
     public UserResponseDto findById(Long id) {

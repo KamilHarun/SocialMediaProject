@@ -5,6 +5,5 @@ import com.example.messagems.Model.Email;
 
 public interface EmailService {
 
-
     void sendEmail(EmailDto emailDto);
 }
