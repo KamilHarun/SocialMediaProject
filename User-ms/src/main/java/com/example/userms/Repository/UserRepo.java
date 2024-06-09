@@ -8,6 +8,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
+import java.util.List;
 import java.util.Optional;
 
 @Repository
@@ -23,6 +24,8 @@ public interface UserRepo extends JpaRepository<Users , Long> {
             "and (:phoneNumber is null or u.phoneNumber = :phoneNumber)"
     )
     Page<Users> findWithSpec(String name, String surname, String phoneNumber, Pageable pageable);
+
+    List<Users> findByAddressId(Long addressId);
 
 //    @Query
 //    Users findByUserIdAndAddressId(Long userId, Long addressId);

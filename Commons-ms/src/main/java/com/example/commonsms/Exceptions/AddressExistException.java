@@ -2,8 +2,8 @@ package com.example.commonsms.Exceptions;
 
 public class AddressExistException extends RuntimeException{
 
-    public AddressExistException (String message){
-        super(message);
+    public AddressExistException (ErrorMessage errorMessage , Object ... args){
+        super(String.format(errorMessage.getMessage() , args));
     }
 }
 

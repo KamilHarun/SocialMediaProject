@@ -20,6 +20,7 @@ public class Post {
     String content;
     long userId;
     boolean shared;
+    int likeCount;
 
     @Temporal(TemporalType.TIMESTAMP)
     Date createdAt;

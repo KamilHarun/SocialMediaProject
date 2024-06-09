@@ -5,6 +5,7 @@ import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -16,6 +17,7 @@ public class LikesController {
     private final LikesService likesService;
 
     @PostMapping("/{postId}/like")
+    @ResponseStatus(HttpStatus.CREATED)
     @Operation(summary = "Like a post")
     @ApiResponses(value = {
             @ApiResponse(responseCode = "200", description = "Post liked successfully"),

@@ -49,6 +49,32 @@ public class MessageController {
     public ResponseEntity<Page<MessageResponseDto>> getAllMessages(Pageable pageable) {
         return new ResponseEntity<>(messageService.getAllMessages(pageable), OK);
     }
+    @Operation(
+            summary = "Update a message",
+            description = "Update the details of an existing message",
+            responses = {
+                    @ApiResponse(responseCode = "200", description = "Successfully updated message"),
+                    @ApiResponse(responseCode = "404", description = "Message not found")
+            }
+    )
+    @PutMapping("/{id}")
+    public ResponseEntity<MessageResponseDto> updateMessage(@RequestParam("id") Long id ,
+                                                            @RequestBody MessageRequestDto messageRequestDto){
+        return new ResponseEntity<>(messageService.update(id ,messageRequestDto) , OK);
+    }
+    @GetMapping("{id}")
+    public ResponseEntity<MessageResponseDto> getMessageById(@RequestParam Long id){
+        return new ResponseEntity<>(messageService.findById(id) ,OK);
+    }
+
+    @GetMapping("/{userId}")
+    public ResponseEntity<MessageResponseDto> getMessageByUser(@RequestHeader("Authorization") String authorizationHeader ,
+                                                               @RequestParam Long userId){
+        return new ResponseEntity<>(messageService.getMessagesByUser( authorizationHeader, userId) , OK);
+
+    }
+
+
 }
 
 

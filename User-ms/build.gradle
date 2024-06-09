@@ -30,7 +30,6 @@ ext {
 dependencies {
     implementation project(':Commons-ms')
     implementation project(':Security-ms')
-    implementation project(':Message-ms')
     implementation 'org.yaml:snakeyaml:2.0'
     implementation 'org.mapstruct:mapstruct:1.4.2.Final'
     annotationProcessor 'org.mapstruct:mapstruct-processor:1.4.2.Final'

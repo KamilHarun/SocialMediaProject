@@ -25,17 +25,23 @@ public class LikesServiceImpl implements LikesService {
         Post post = postRepo.findById(postId)
                 .orElseThrow(() -> new NotFoundException("Post not found with id: " + postId));
 
-       userFeign.findById(authorizationHeader, userId);
-
         Likes likesEntity = likesRepo.findByPostAndUserId(post, userId);
-        if (likesEntity == null) {
+        boolean isNewLike = (likesEntity == null);
+
+        if (isNewLike) {
             likesEntity = new Likes();
+            likesEntity.setPost(post);
+            likesEntity.setUserId(userId);
+            post.setLikeCount(post.getLikeCount() + (like ? 1 : 0));
+        } else {
+            if (likesEntity.isLikes() != like) {
+                post.setLikeCount(post.getLikeCount() + (like ? 1 : -1));
+            }
         }
 
-        likesEntity.setPost(post);
-        likesEntity.setUserId(userId);
         likesEntity.setLikes(like);
-
         likesRepo.save(likesEntity);
+        postRepo.save(post);
     }
 }
+

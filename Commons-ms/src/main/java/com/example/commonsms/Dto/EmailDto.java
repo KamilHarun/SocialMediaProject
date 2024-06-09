@@ -12,4 +12,5 @@ public class EmailDto {
     String to;
     String subject;
     String message;
+    String body;
 }

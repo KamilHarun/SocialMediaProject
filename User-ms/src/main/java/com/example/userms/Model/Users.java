@@ -48,4 +48,7 @@ public class Users implements Serializable {
             joinColumns = @JoinColumn(name = "user_id" , referencedColumnName = "id"),
             inverseJoinColumns = @JoinColumn(name = "authority_id" , referencedColumnName = "id"))
     List<Authority> authorities;
+
+    public void setProfilePictureUrl(String filePath) {
+    }
 }

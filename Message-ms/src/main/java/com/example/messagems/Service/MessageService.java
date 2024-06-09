@@ -9,4 +9,10 @@ public interface MessageService {
     MessageResponseDto send(String authorizationHeader ,  MessageRequestDto messageRequestDto);
 
     Page<MessageResponseDto> getAllMessages(Pageable pageable);
+
+    MessageResponseDto update(Long id, MessageRequestDto messageRequestDto);
+
+    MessageResponseDto findById(Long id);
+
+    MessageResponseDto getMessagesByUser(String authorizationHeader , Long userId);
 }

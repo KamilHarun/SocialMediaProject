@@ -1,5 +1,6 @@
 package com.example.userms.Dto.Request;
 
+import com.example.commonsms.Constants.ValidationConstants;
 import com.example.userms.Model.Users;
 import jakarta.validation.constraints.NotBlank;
 import lombok.*;
@@ -14,14 +15,12 @@ import java.io.Serializable;
 @FieldDefaults(level = AccessLevel.PRIVATE)
 public class AddressRequestDto implements Serializable {
         long id;
-        @NotBlank(message = "Street cannot be null")
+        @NotBlank(message = ValidationConstants.STREET_REQUIRED)
         String street;
-        @NotBlank(message = "City cannot be null")
+        @NotBlank(message = ValidationConstants.CITY_REQUIRED)
         String city;
-        @NotBlank(message = "Postal code cannot be null")
+        @NotBlank(message = ValidationConstants.POSTAL_CODE_REQUIRED)
         String postalCode;
-        @NotBlank(message = "Country cannot be null")
+        @NotBlank(message = ValidationConstants.COUNTRY_REQUIRED)
         String country;
-
-
 }

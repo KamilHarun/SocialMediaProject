@@ -4,6 +4,7 @@ import lombok.*;
 import lombok.experimental.FieldDefaults;
 
 import java.io.Serializable;
+import java.time.LocalDateTime;
 
 @Data
 @Builder
@@ -15,5 +16,5 @@ public class MessageResponseDto implements Serializable {
     Long senderId;
     Long receiverId;
     String content;
-
+    LocalDateTime timestamp;
 }

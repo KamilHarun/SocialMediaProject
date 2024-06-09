@@ -1,7 +1,8 @@
 package com.example.commonsms.Exceptions;
 
-public class UserNotFoundException extends RuntimeException{
-    public UserNotFoundException(String message){
-        super(message);
+public class UserNotFoundException extends RuntimeException {
+    public UserNotFoundException(ErrorMessage errorMessage, Object... args) {
+        super(String.format(errorMessage.getMessage(), args));
     }
 }
+

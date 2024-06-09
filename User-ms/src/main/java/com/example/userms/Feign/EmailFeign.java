@@ -14,5 +14,5 @@ import static com.example.commonsms.Constants.FeignConstants.EMAIL_SERVICE;
 public interface EmailFeign {
 
     @PostMapping("ap1/v1/emails/send")
-    public ResponseEntity<String> sendEmail (@Valid @RequestBody EmailDto emailDto);
+    ResponseEntity<String> sendEmail (@Valid @RequestBody EmailDto emailDto);
 }

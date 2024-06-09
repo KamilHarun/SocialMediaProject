@@ -1,6 +1,7 @@
 package com.example.userms.Model;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotBlank;
 import lombok.*;
 import lombok.experimental.FieldDefaults;
 
@@ -19,9 +20,13 @@ public class Address implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     Long id;
 
+    @NotBlank(message = "Street cannot be blank")
     String street;
+    @NotBlank(message = "City cannot be blank")
     String city;
+    @NotBlank(message = "Postal code cannot be blank")
     String postalCode;
+    @NotBlank(message = "Country cannot be blank")
     String country;
 
     @OneToMany(mappedBy = "address", cascade = CascadeType.ALL)

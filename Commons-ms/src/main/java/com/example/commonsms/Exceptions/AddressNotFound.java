@@ -1,8 +1,8 @@
 package com.example.commonsms.Exceptions;
 
 public class AddressNotFound extends RuntimeException {
-    public AddressNotFound (String message){
-        super(message);
+    public AddressNotFound (ErrorMessage errorMessage , Object ...args){
+        super(String.format(errorMessage.getMessage() , args));
 
     }
 }

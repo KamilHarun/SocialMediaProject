@@ -9,7 +9,9 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import static com.example.commonsms.Constants.FeignConstants.USER_SERVICE;
 
-@FeignClient(name = USER_SERVICE , configuration = FeignClientProperties.FeignClientConfiguration.class)
+@FeignClient(name = USER_SERVICE ,
+        configuration = FeignClientProperties.FeignClientConfiguration.class
+)
 public interface UserFeign {
     @GetMapping("/api/v1/users/findById")
     UserResponseDto findById(@RequestHeader("Authorization") String authorizationHeader,
