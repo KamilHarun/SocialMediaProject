@@ -12,6 +12,8 @@ import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Service;
 
+import static com.example.commonsms.Exceptions.ErrorMessage.*;
+
 @Service
 @RequiredArgsConstructor
 @Slf4j
@@ -28,10 +30,10 @@ public class EmailServiceImpl implements EmailService {
 
         try {
             javaMailSender.send(simpleMailMessage);
-            log.info("Email sent successfully to {}", emailDTO.getTo());
+            log.info(EMAIL_SEND_SUCCESS.format(emailDTO.getTo()));
         } catch (MailException e) {
-            log.error("Error while sending email to {}", emailDTO.getTo(), e);
-            throw new EmailSendException("Failed to send email to " + emailDTO.getTo());
+            log.error(ERROR_WHILE_SENDING_EMAIL.format(emailDTO.getTo()), e);
+            throw new EmailSendException(EMAIL_SEND_FAILURE.format(emailDTO.getTo()));
         }
     }
 

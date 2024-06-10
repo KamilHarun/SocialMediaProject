@@ -1,7 +1,9 @@
 package com.example.messagems.Service.Impl;
 
 import com.example.commonsms.Dto.UserResponseDto;
+import com.example.commonsms.Exceptions.MessageNotFoundException;
 import com.example.commonsms.Exceptions.NotFoundException;
+import com.example.commonsms.Exceptions.UserNotFoundException;
 import com.example.messagems.Config.MessageMapper;
 import com.example.messagems.Dto.MessageRequestDto;
 import com.example.messagems.Dto.MessageResponseDto;
@@ -25,6 +27,8 @@ import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
+import static com.example.commonsms.Exceptions.ErrorMessage.*;
+
 @Service
 @RequiredArgsConstructor
 @Slf4j
@@ -37,17 +41,17 @@ public class MessageServiceImpl implements MessageService {
     public MessageResponseDto send(String authorizationHeader, MessageRequestDto messageRequestDto) {
         UserResponseDto sender = userFeign.findById(authorizationHeader, messageRequestDto.getSenderId());
         if (sender == null) {
-            throw new NotFoundException("Sender not found");
+            throw new UserNotFoundException(SENDER_NOT_FOUND_EXCEPTION);
         }
 
         UserResponseDto receiver = userFeign.findById(authorizationHeader, messageRequestDto.getReceiverId());
         if (receiver == null) {
-            throw new NotFoundException("Receiver not found");
+            throw new UserNotFoundException(RECEIVER_NOT_F0UND_EXCEPTION);
         }
 
         String content = messageRequestDto.getContent();
         if (content == null || content.isEmpty()) {
-            throw new IllegalArgumentException("Message content cannot be empty");
+            throw new IllegalArgumentException(String.valueOf(MESSAGE_CONTENT_EXCEPTION));
         }
 
         Message message = Message.builder()
@@ -71,7 +75,7 @@ public class MessageServiceImpl implements MessageService {
     @Override
     public MessageResponseDto update(Long id, MessageRequestDto messageRequestDto) {
         Message message = messageRepository.findById(id)
-                .orElseThrow(() -> new ResourceNotFoundException("Message not found with id: " + id));
+                .orElseThrow(() -> new MessageNotFoundException(MESSAGE_NOT_FOUND_WITH_ID_EXCEPTION , id));
 
         message.setSenderId(messageRequestDto.getSenderId());
         message.setReceiverId(messageRequestDto.getReceiverId());
@@ -87,38 +91,28 @@ public class MessageServiceImpl implements MessageService {
     public MessageResponseDto findById(Long id) {
         Optional<Message> byId = messageRepository.findById(id);
         Message message = byId.orElseThrow(() ->
-                new NotFoundException("Message not found wtih this ID : " + id));
+                new MessageNotFoundException(MESSAGE_NOT_FOUND_WITH_ID_EXCEPTION , id));
 
         return messageMapper.messageToResponse(message);
     }
 
     @Override
-    public MessageResponseDto getMessagesByUser(String authorizationHeader, Long userId) {
+    public List<MessageResponseDto> getMessagesByUser(String authorizationHeader, Long userId) {
 
         UserResponseDto byId = userFeign.findById(authorizationHeader, userId);
         if (byId == null) {
-            throw new ResourceNotFoundException("User not found with id: " + userId);
+            throw new UserNotFoundException(USER_NOT_FOUND_WITH_ID_EXCEPTION , userId);
         }
 
-        List<Message> messages = messageRepository.findBySenderIdOrReceiverId(userId, userId);
+        List<MessageResponseDto> messages = messageRepository.findBySenderIdOrReceiverId(userId, userId);
 
         if (messages.isEmpty()) {
-            throw new ResourceNotFoundException("Messages not found for user with id: " + userId);
+            throw new MessageNotFoundException(MESSAGE_NOT_FOUND_WITH_ID_EXCEPTION , userId);
         }
 
-        List<MessageResponseDto> responseDtos = new ArrayList<>();
-        for (Message message : messages) {
-            MessageResponseDto responseDto = new MessageResponseDto();
-            responseDto.setId(message.getId());
-            responseDto.setSenderId(message.getSenderId());
-            responseDto.setReceiverId(message.getReceiverId());
-            responseDto.setContent(message.getContent());
-            // Diğer gerekli alanları set et
-            responseDtos.add(responseDto);
-        }
-
-        return responseDtos.get(0); // İlk mesajı döndür
+        return messages;
     }
+
 }
 
 

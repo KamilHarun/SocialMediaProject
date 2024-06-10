@@ -11,6 +11,9 @@ import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import static com.example.commonsms.Exceptions.ErrorMessage.POST_NOT_FOUND_EXCEPTION;
+import static com.example.commonsms.Exceptions.ErrorMessage.USER_NOT_FOUND_WITH_ID_EXCEPTION;
+
 @Service
 @RequiredArgsConstructor
 public class LikesServiceImpl implements LikesService {
@@ -23,7 +26,7 @@ public class LikesServiceImpl implements LikesService {
     @Override
     public void likeOrDislikePost(String authorizationHeader, Long postId, boolean like, Long userId) {
         Post post = postRepo.findById(postId)
-                .orElseThrow(() -> new NotFoundException("Post not found with id: " + postId));
+                .orElseThrow(() -> new NotFoundException(POST_NOT_FOUND_EXCEPTION));
 
         Likes likesEntity = likesRepo.findByPostAndUserId(post, userId);
         boolean isNewLike = (likesEntity == null);

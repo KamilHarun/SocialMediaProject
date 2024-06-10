@@ -76,6 +76,21 @@ public class GlobalException {
         return ResponseEntity.status(INTERNAL_SERVER_ERROR).body(error);
     }
 
+    @ExceptionHandler(MessageNotFoundException.class)
+    public ResponseEntity<Map<String,String>> messageExceptionHandler(MessageNotFoundException messageNotFoundException){
+        Map<String,String> error = new HashMap<>();
+        error.put("error message : " , messageNotFoundException.getLocalizedMessage());
+        return ResponseEntity.status(NOT_FOUND).body(error);
+    }
+
+    @ExceptionHandler(CommentNotFoundException.class)
+    public ResponseEntity<Map<String,String>> commentExceptionHandler(CommentNotFoundException commentNotFoundException){
+        Map<String,String> error = new HashMap<>();
+        error.put("error message : " , commentNotFoundException.getLocalizedMessage());
+        return ResponseEntity.status(NOT_FOUND).body(error);
+    }
+
+
 
 }
 

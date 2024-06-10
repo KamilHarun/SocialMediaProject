@@ -1,8 +1,8 @@
 package com.example.commonsms.Exceptions;
 
 public class NotFoundException extends RuntimeException{
-    public NotFoundException(String message) {
-        super(message);
+    public NotFoundException(ErrorMessage errorMessage, Object ...args) {
+        super(String.format(errorMessage.getMessage() , args));
     }
 }
 

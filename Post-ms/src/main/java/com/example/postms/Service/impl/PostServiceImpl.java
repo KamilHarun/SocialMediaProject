@@ -1,6 +1,7 @@
 package com.example.postms.Service.impl;
 
 import com.example.commonsms.Dto.UserResponseDto;
+import com.example.commonsms.Exceptions.ErrorMessage;
 import com.example.commonsms.Exceptions.NotFoundException;
 import com.example.commonsms.Exceptions.UnauthorizedException;
 import com.example.postms.Config.PostMapper;
@@ -20,6 +21,8 @@ import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 
+import static com.example.commonsms.Exceptions.ErrorMessage.*;
+
 @Service
 @RequiredArgsConstructor
 public class PostServiceImpl implements PostService {
@@ -32,7 +35,7 @@ public class PostServiceImpl implements PostService {
     public Long create(String authorizationHeader, PostRequestDto postRequestDto) {
         UserResponseDto userById = userFeign.findById(authorizationHeader, postRequestDto.getUserId());
         if (userById == null) {
-            throw new NotFoundException("User not found");
+            throw new NotFoundException(USER_NOT_FOUND_EXCEPTION);
         }
         Post post = Post.builder()
                 .userId(postRequestDto.getUserId())
@@ -47,6 +50,10 @@ public class PostServiceImpl implements PostService {
     @Override
     public Page<PostResponseDto> getAll(Pageable pageable) {
         Page<Post> posts = postRepo.findAll(pageable);
+
+        if (posts.isEmpty()) {
+            throw new NotFoundException(POST_NOT_FOUND_EXCEPTION);
+        }
         List<PostResponseDto> responses = posts.getContent().stream()
                 .map(post -> PostResponseDto.builder()
                         .userId(post.getUserId())
@@ -66,22 +73,22 @@ public class PostServiceImpl implements PostService {
             Post post = postOptional.get();
             return mapper.postToResponse(post);
         } else {
-            throw new NotFoundException("Post not found with id: " + id);
+            throw new NotFoundException(POST_NOT_FOUND_EXCEPTION);
         }
     }
 
     @Override
     public PostResponseDto update(String authorizationHeader ,  PostRequestDto postRequestDto, Long id) {
         Post post = postRepo.findById(id)
-                .orElseThrow(() -> new NotFoundException("Post not found"));
+                .orElseThrow(() -> new NotFoundException(POST_NOT_FOUND_EXCEPTION));
 
         UserResponseDto userDto = userFeign.findById(authorizationHeader,postRequestDto.getUserId() );
         if (userDto == null) {
-            throw new NotFoundException("User not found");
+            throw new NotFoundException(USER_NOT_FOUND_EXCEPTION);
         }
 
         if (post.getUserId() != postRequestDto.getUserId()) {
-            throw new UnauthorizedException("You are not authorized to update this post");
+            throw new UnauthorizedException(UNAUTHORIZED_EXCEPTION);
         }
 
         post.setContent(postRequestDto.getContent());
@@ -94,20 +101,20 @@ public class PostServiceImpl implements PostService {
     @Override
     public void delete(Long id) {
         Post post = postRepo.findById(id)
-                .orElseThrow(() -> new NotFoundException("Post not found"));
+                .orElseThrow(() -> new NotFoundException(POST_NOT_FOUND_EXCEPTION));
         postRepo.delete(post);
     }
 
     @Override
     public void sharePost(Long postId) {
         Post post = postRepo.findById(postId)
-                .orElseThrow(() -> new NotFoundException("Post not found with id: " + postId));
+                .orElseThrow(() -> new NotFoundException(POST_NOT_FOUND_WITH_ID_EXCEPTION, postId));
 
         if (!post.isShared()) {
             post.setShared(true);
             postRepo.save(post);
         } else {
-            throw new IllegalStateException("Post with id " + postId + " is already shared.");
+            throw new IllegalStateException(POST_ALREADY_SHARED.format(postId));
         }
     }
 

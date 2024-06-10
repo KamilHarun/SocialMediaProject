@@ -13,6 +13,8 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 import static org.springframework.http.HttpStatus.OK;
 
 @RestController
@@ -68,8 +70,8 @@ public class MessageController {
     }
 
     @GetMapping("/{userId}")
-    public ResponseEntity<MessageResponseDto> getMessageByUser(@RequestHeader("Authorization") String authorizationHeader ,
-                                                               @RequestParam Long userId){
+    public ResponseEntity<List<MessageResponseDto>> getMessageByUser(@RequestHeader("Authorization") String authorizationHeader ,
+                                                                     @RequestParam Long userId){
         return new ResponseEntity<>(messageService.getMessagesByUser( authorizationHeader, userId) , OK);
 
     }

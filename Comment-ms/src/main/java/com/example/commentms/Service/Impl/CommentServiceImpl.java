@@ -6,7 +6,7 @@ import com.example.commentms.Dto.Response.CommentResponseDto;
 import com.example.commentms.Model.Comment;
 import com.example.commentms.Repository.CommentRepo;
 import com.example.commentms.Service.CommentService;
-import com.example.commonms.Exceptions.NotFoundException;
+import com.example.commonsms.Exceptions.CommentNotFoundException;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.domain.Page;
@@ -18,6 +18,8 @@ import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
+import static com.example.commonsms.Exceptions.ErrorMessage.COMMENT_NOT_FOUND_EXCEPTION;
+
 @Service
 @Slf4j
 @RequiredArgsConstructor
@@ -27,6 +29,8 @@ public class CommentServiceImpl implements CommentService {
     private final CommentMapper commentMapper;
     @Override
     public Long createComment(CommentRequestDto commentRequestDto) {
+        commentRepo.findById(commentRequestDto.getId()).orElseThrow(()->
+                new CommentNotFoundException(COMMENT_NOT_FOUND_EXCEPTION));
         Comment comment = Comment.builder()
                 .commentedPostId(commentRequestDto.getCommentedPostId())
                 .text(commentRequestDto.getText())
@@ -43,13 +47,16 @@ public class CommentServiceImpl implements CommentService {
             return commentMapper.commentToResponse(comment);
         }
         else {
-            throw new NotFoundException("Comment not found");
+            throw new CommentNotFoundException(COMMENT_NOT_FOUND_EXCEPTION);
         }
     }
 
     @Override
     public Page<CommentResponseDto> getAllComments(Pageable pageable) {
         Page<Comment> all = commentRepo.findAll(pageable);
+        if (all.isEmpty()) {
+            throw new CommentNotFoundException(COMMENT_NOT_FOUND_EXCEPTION);
+        }
         List<CommentResponseDto> commentResponseDtoList = all.getContent().stream()
                 .map(comment -> CommentResponseDto.builder()
                         .commentedPostId(comment.getCommentedPostId())
@@ -62,7 +69,7 @@ public class CommentServiceImpl implements CommentService {
     @Override
     public CommentResponseDto update(CommentRequestDto commentRequestDto, Long id) {
         Comment existingComment = commentRepo.findById(id)
-                .orElseThrow(() -> new NotFoundException("Comment not found"));
+                .orElseThrow(() -> new CommentNotFoundException(COMMENT_NOT_FOUND_EXCEPTION));
 
         existingComment.setCommentedPostId(commentRequestDto.getCommentedPostId());
         existingComment.setText(commentRequestDto.getText());
@@ -73,7 +80,7 @@ public class CommentServiceImpl implements CommentService {
     @Override
     public void delete(Long id) {
         Comment comment = commentRepo.findById(id).orElseThrow(() ->
-                new NotFoundException("Comment not found"));
+                new CommentNotFoundException(COMMENT_NOT_FOUND_EXCEPTION));
         commentRepo.delete(comment);
 
     }
