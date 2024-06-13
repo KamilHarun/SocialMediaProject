@@ -29,6 +29,7 @@ public class CommentServiceImpl implements CommentService {
     private final CommentMapper commentMapper;
     @Override
     public Long createComment(CommentRequestDto commentRequestDto) {
+        log.info("Creating a new comment for post ID: {}", commentRequestDto.getCommentedPostId());
         commentRepo.findById(commentRequestDto.getId()).orElseThrow(()->
                 new CommentNotFoundException(COMMENT_NOT_FOUND_EXCEPTION));
         Comment comment = Comment.builder()
@@ -41,6 +42,7 @@ public class CommentServiceImpl implements CommentService {
 
     @Override
     public CommentResponseDto findById(Long id) {
+        log.info("Finding comment by ID: {}", id);
         Optional<Comment> byId = commentRepo.findById(id);
         if (byId.isPresent()) {
             Comment comment = byId.get();
@@ -53,6 +55,7 @@ public class CommentServiceImpl implements CommentService {
 
     @Override
     public Page<CommentResponseDto> getAllComments(Pageable pageable) {
+        log.info("Getting all comments with pagination");
         Page<Comment> all = commentRepo.findAll(pageable);
         if (all.isEmpty()) {
             throw new CommentNotFoundException(COMMENT_NOT_FOUND_EXCEPTION);
@@ -68,6 +71,7 @@ public class CommentServiceImpl implements CommentService {
 
     @Override
     public CommentResponseDto update(CommentRequestDto commentRequestDto, Long id) {
+        log.info("Updating comment with ID: {}", id);
         Comment existingComment = commentRepo.findById(id)
                 .orElseThrow(() -> new CommentNotFoundException(COMMENT_NOT_FOUND_EXCEPTION));
 
@@ -79,6 +83,7 @@ public class CommentServiceImpl implements CommentService {
 
     @Override
     public void delete(Long id) {
+        log.info("Deleting comment with ID: {}", id);
         Comment comment = commentRepo.findById(id).orElseThrow(() ->
                 new CommentNotFoundException(COMMENT_NOT_FOUND_EXCEPTION));
         commentRepo.delete(comment);
@@ -87,6 +92,7 @@ public class CommentServiceImpl implements CommentService {
 
     @Override
     public Page<CommentResponseDto> searchCommentsByContent(String query, Pageable pageable) {
+        log.info("Searching comments by content with query: {}", query);
         Page<Comment> commentsPage = commentRepo.findByContentContainingIgnoreCase(query, pageable);
 
         List<CommentResponseDto> commentResponseDtos = commentsPage.getContent()
@@ -100,8 +106,8 @@ public class CommentServiceImpl implements CommentService {
 
     @Override
     public List<Comment> getCommentEditHistory(Long id) {
+        log.info("Getting edit history for comment ID: {}", id);
         List<CommentRequestDto> editHistoryList = commentRepo.findByCommentIdOrderByUpdateTimeDesc(id);
-
         return commentMapper.toDtoList(editHistoryList);
     }
 }

@@ -9,6 +9,7 @@ import com.example.postms.Repository.PostRepo;
 import com.example.postms.Service.LikesService;
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
 import static com.example.commonsms.Exceptions.ErrorMessage.POST_NOT_FOUND_EXCEPTION;
@@ -16,6 +17,7 @@ import static com.example.commonsms.Exceptions.ErrorMessage.USER_NOT_FOUND_WITH_
 
 @Service
 @RequiredArgsConstructor
+@Slf4j
 public class LikesServiceImpl implements LikesService {
 
     private final PostRepo postRepo;
@@ -25,6 +27,7 @@ public class LikesServiceImpl implements LikesService {
     @Transactional
     @Override
     public void likeOrDislikePost(String authorizationHeader, Long postId, boolean like, Long userId) {
+        log.info("");
         Post post = postRepo.findById(postId)
                 .orElseThrow(() -> new NotFoundException(POST_NOT_FOUND_EXCEPTION));
 

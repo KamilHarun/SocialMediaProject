@@ -15,6 +15,7 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.kafka.common.errors.ResourceNotFoundException;
 import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
@@ -69,8 +70,20 @@ public class MessageServiceImpl implements MessageService {
 
     @Override
     public Page<MessageResponseDto> getAllMessages(Pageable pageable) {
-        return messageRepository.findAll(pageable).map(MessageResponseDto::new);
+        log.info("Getting all message with pagination");
+        Page<Message> messages = messageRepository.findAll(pageable);
+        if (messages.isEmpty()) {
+            throw new MessageNotFoundException(MESSAGE_NOT_FOUND_EXCEPTION);
+        }
+        return new PageImpl<>(messages.getContent().stream()
+                .map(message -> MessageResponseDto.builder()
+                        .senderId(message.getSenderId())
+                        .receiverId(message.getReceiverId())
+                        .content(message.getContent())
+                        .build())
+                .collect(Collectors.toList()), pageable, messages.getTotalElements());
     }
+
 
     @Override
     public MessageResponseDto update(Long id, MessageRequestDto messageRequestDto) {

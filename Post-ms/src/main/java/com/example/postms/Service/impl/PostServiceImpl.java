@@ -12,6 +12,7 @@ import com.example.postms.Model.Post;
 import com.example.postms.Repository.PostRepo;
 import com.example.postms.Service.PostService;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.Pageable;
@@ -25,6 +26,7 @@ import static com.example.commonsms.Exceptions.ErrorMessage.*;
 
 @Service
 @RequiredArgsConstructor
+@Slf4j
 public class PostServiceImpl implements PostService {
     private final PostRepo postRepo;
     private final UserFeign userFeign;
@@ -33,8 +35,10 @@ public class PostServiceImpl implements PostService {
 
     @Override
     public Long create(String authorizationHeader, PostRequestDto postRequestDto) {
+        log.info("Create a new Post");
         UserResponseDto userById = userFeign.findById(authorizationHeader, postRequestDto.getUserId());
         if (userById == null) {
+            log.warn("User with ID : {} not found" , postRequestDto.getUserId());
             throw new NotFoundException(USER_NOT_FOUND_EXCEPTION);
         }
         Post post = Post.builder()
@@ -49,9 +53,11 @@ public class PostServiceImpl implements PostService {
 
     @Override
     public Page<PostResponseDto> getAll(Pageable pageable) {
+        log.info("Getting all Posts with pagination");
         Page<Post> posts = postRepo.findAll(pageable);
 
         if (posts.isEmpty()) {
+            log.warn("Post not found");
             throw new NotFoundException(POST_NOT_FOUND_EXCEPTION);
         }
         List<PostResponseDto> responses = posts.getContent().stream()
@@ -68,6 +74,7 @@ public class PostServiceImpl implements PostService {
 
     @Override
     public PostResponseDto findById(Long id) {
+        log.info("Fetching post By ID : {}" , id);
         Optional<Post> postOptional = postRepo.findById(id);
         if (postOptional.isPresent()) {
             Post post = postOptional.get();
@@ -79,6 +86,7 @@ public class PostServiceImpl implements PostService {
 
     @Override
     public PostResponseDto update(String authorizationHeader ,  PostRequestDto postRequestDto, Long id) {
+        log.info("Updating post with ID: {}", id);
         Post post = postRepo.findById(id)
                 .orElseThrow(() -> new NotFoundException(POST_NOT_FOUND_EXCEPTION));
 
@@ -100,6 +108,7 @@ public class PostServiceImpl implements PostService {
 
     @Override
     public void delete(Long id) {
+        log.info("Deleting post with ID: {}", id);
         Post post = postRepo.findById(id)
                 .orElseThrow(() -> new NotFoundException(POST_NOT_FOUND_EXCEPTION));
         postRepo.delete(post);
@@ -107,6 +116,7 @@ public class PostServiceImpl implements PostService {
 
     @Override
     public void sharePost(Long postId) {
+        log.info("Sharing post with ID: {}", postId);
         Post post = postRepo.findById(postId)
                 .orElseThrow(() -> new NotFoundException(POST_NOT_FOUND_WITH_ID_EXCEPTION, postId));
 
