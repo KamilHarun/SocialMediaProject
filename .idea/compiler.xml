@@ -7,10 +7,9 @@
         <processorPath useClasspath="false">
           <entry name="$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.projectlombok/lombok/1.18.30/f195ee86e6c896ea47a1d39defbe20eb59cd149d/lombok-1.18.30.jar" />
         </processorPath>
-        <module name="com.Mypoject.SocialMedia.Commons-ms.main" />
         <module name="com.Mypoject.SocialMedia.Security-ms.main" />
-        <module name="com.Mypoject.SocialMedia.Comment-ms.main" />
         <module name="com.Mypoject.SocialMedia.Image-ms.main" />
+        <module name="com.Mypoject.SocialMedia.Commons-ms.main" />
       </profile>
       <profile name="Gradle Imported" enabled="true">
         <outputRelativeToContentRoot value="true" />
@@ -20,6 +19,7 @@
         </processorPath>
         <module name="com.Mypoject.SocialMedia.User-ms.main" />
         <module name="SocialMedia.Message-ms.main" />
+        <module name="com.Mypoject.SocialMedia.Comment-ms.main" />
         <module name="com.Mypoject.SocialMedia.Post-ms.main" />
       </profile>
     </annotationProcessing>

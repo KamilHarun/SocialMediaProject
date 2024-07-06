@@ -35,7 +35,7 @@ public class Users implements Serializable {
     String email;
     @Column(unique = true,nullable = false)
     String phoneNumber;
-
+    String profilePicturesUrl;
     @ManyToOne
     @JoinColumn(name = "address_id")
     Address address;
@@ -49,6 +49,5 @@ public class Users implements Serializable {
             inverseJoinColumns = @JoinColumn(name = "authority_id" , referencedColumnName = "id"))
     List<Authority> authorities;
 
-    public void setProfilePictureUrl(String filePath) {
-    }
+
 }

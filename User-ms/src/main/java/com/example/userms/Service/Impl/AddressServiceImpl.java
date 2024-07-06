@@ -53,7 +53,7 @@ public class AddressServiceImpl implements AddressService {
     @Cacheable(value = "findById" , key = "#id")
     public AddressResponseDto findById(Long id) {
         Address address = addressRepo.findById(id).orElseThrow(() ->
-                new NotFoundException("Address not found"));
+                new NotFoundException(ADDRESS_NOT_FOUND_EXCEPTION));
         return addressMapper.addressToResponseDto(address);
     }
 
@@ -65,9 +65,9 @@ public class AddressServiceImpl implements AddressService {
         ) {
             throw new AddressNotFound(ADDRESS_NOT_FOUND_EXCEPTION);
         }
-        List<AddressResponseDto> addressResponseDtos = addresses.getContent().stream()
+        List<AddressResponseDto> addressResponseDto = addresses.getContent().stream()
                 .map(addressMapper::addressToResponseDto)
                 .collect(Collectors.toList());
-        return new PageImpl<>(addressResponseDtos, pageable, addresses.getTotalElements());
+        return new PageImpl<>(addressResponseDto, pageable, addresses.getTotalElements());
     }
 }

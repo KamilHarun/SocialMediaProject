@@ -28,57 +28,106 @@ ext {
 }
 
 dependencies {
-    implementation project(':Commons-ms')
-    implementation project(':Security-ms')
-    implementation 'org.yaml:snakeyaml:2.0'
-    implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
-    implementation 'org.mapstruct:mapstruct:1.4.2.Final'
-    annotationProcessor 'org.mapstruct:mapstruct-processor:1.4.2.Final'
-    implementation 'org.springframework.boot:spring-boot-starter-security'
-    implementation 'org.springframework.boot:spring-boot-starter-web'
-    implementation project(path: ':User-ms')
-    compileOnly 'org.projectlombok:lombok'
-    runtimeOnly 'org.postgresql:postgresql'
-    testImplementation 'org.springframework.boot:spring-boot-starter-test'
-    testImplementation 'org.springframework.security:spring-security-test'
-    implementation 'org.springframework.cloud:spring-cloud-starter-netflix-eureka-client'
-    implementation 'com.thoughtworks.xstream:xstream:1.4.20'
-    implementation 'javax.servlet:javax.servlet-api:4.0.1'
-    implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
-    implementation 'org.springframework.boot:spring-boot-starter-validation'
-    implementation 'com.fasterxml.jackson.core:jackson-annotations:2.16.1'
-    implementation 'org.liquibase:liquibase-core'
-    implementation 'org.modelmapper.extensions:modelmapper-spring:3.1.1'
-    implementation 'org.springframework.cloud:spring-cloud-starter-openfeign'
-    implementation 'org.springframework.boot:spring-boot-starter-security'
-    implementation 'io.jsonwebtoken:jjwt-api:0.11.5'
-    runtimeOnly 'io.jsonwebtoken:jjwt-impl:0.11.5'
-    runtimeOnly 'io.jsonwebtoken:jjwt-jackson:0.11.5'
-    implementation 'com.fasterxml.jackson.core:jackson-databind:2.16.1'
-    implementation 'org.springframework.boot:spring-boot-starter'
-    implementation 'org.springframework.kafka:spring-kafka'
-    testImplementation 'org.springframework.kafka:spring-kafka-test'
-    implementation 'org.springdoc:springdoc-openapi-ui:1.6.4'
-    implementation 'org.springframework.boot:spring-boot-devtools:3.2.2'
-    implementation 'org.springframework.boot:spring-boot-starter-data-redis'
-    runtimeOnly 'org.postgresql:postgresql'
-    compileOnly 'org.projectlombok:lombok'
-    annotationProcessor 'org.projectlombok:lombok'
-}
+    dependencies {
+        // Dependencies for Commons-ms and Security-ms projects
+        implementation project(':Commons-ms')
+        implementation project(':Security-ms')
+        implementation project(':User-ms')
 
-tasks.named('bootBuildImage') {
-    builder = 'paketobuildpacks/builder-jammy-base:latest'
-}
 
-tasks.register("prepareKotlinBuildScriptModel") {}
+        // YAML handling with SnakeYAML
+        implementation 'org.yaml:snakeyaml:2.0'
 
-dependencyManagement {
-    imports {
-        mavenBom "org.springframework.boot:spring-boot-dependencies:${springBootVersion}"
-        mavenBom "org.springframework.cloud:spring-cloud-dependencies:${springCloudVersion}"
+        // MapStruct dependencies
+        implementation 'org.mapstruct:mapstruct:1.4.2.Final'
+        annotationProcessor 'org.mapstruct:mapstruct-processor:1.4.2.Final'
+
+        // Spring Boot Data JPA starter
+        implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
+
+        // Spring Security starter
+        implementation 'org.springframework.boot:spring-boot-starter-security'
+
+        // Spring Web starter
+        implementation 'org.springframework.boot:spring-boot-starter-web'
+
+        // Spring Cloud Config Client starter
+        implementation 'org.springframework.cloud:spring-cloud-starter-config'
+
+        // Testing with Spring Boot Starter Test
+        testImplementation 'org.springframework.boot:spring-boot-starter-test'
+        testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
+
+        // Lombok library
+        compileOnly 'org.projectlombok:lombok'
+        annotationProcessor 'org.projectlombok:lombok'
+
+        // PostgreSQL driver
+        runtimeOnly 'org.postgresql:postgresql'
+
+        // Spring Cloud Eureka Client
+        implementation 'org.springframework.cloud:spring-cloud-starter-netflix-eureka-client'
+
+        // XStream library
+        implementation 'com.thoughtworks.xstream:xstream:1.4.20'
+
+        // Servlet API
+        implementation 'javax.servlet:javax.servlet-api:4.0.1'
+
+        // Validation starter
+        implementation 'org.springframework.boot:spring-boot-starter-validation'
+
+        // Jackson Annotations
+        implementation 'com.fasterxml.jackson.core:jackson-annotations:2.16.1'
+
+        // Liquibase
+        implementation 'org.liquibase:liquibase-core'
+
+        // ModelMapper Spring extension
+        implementation 'org.modelmapper.extensions:modelmapper-spring:3.1.1'
+
+        // Spring Cloud OpenFeign
+        implementation 'org.springframework.cloud:spring-cloud-starter-openfeign'
+
+        // JWT (JSON Web Token) libraries
+        implementation 'io.jsonwebtoken:jjwt-api:0.11.5'
+        runtimeOnly 'io.jsonwebtoken:jjwt-impl:0.11.5'
+        runtimeOnly 'io.jsonwebtoken:jjwt-jackson:0.11.5'
+
+        // Jackson Databind
+        implementation 'com.fasterxml.jackson.core:jackson-databind:2.16.1'
+
+        // Spring Boot starter
+        implementation 'org.springframework.boot:spring-boot-starter'
+
+        // Kafka with Spring Kafka
+        implementation 'org.springframework.kafka:spring-kafka'
+        testImplementation 'org.springframework.kafka:spring-kafka-test'
+
+        // Springdoc OpenAPI UI
+        implementation 'org.springdoc:springdoc-openapi-ui:1.6.4'
+
+        // Spring Boot DevTools
+        implementation 'org.springframework.boot:spring-boot-devtools:3.2.2'
+
+        // Redis with Spring Boot starter
+        implementation 'org.springframework.boot:spring-boot-starter-data-redis'
     }
-}
 
-tasks.named('test') {
-    useJUnitPlatform()
+    tasks.named('bootBuildImage') {
+        builder = 'paketobuildpacks/builder-jammy-base:latest'
+    }
+
+    tasks.register("prepareKotlinBuildScriptModel") {}
+
+    dependencyManagement {
+        imports {
+            mavenBom "org.springframework.boot:spring-boot-dependencies:${springBootVersion}"
+            mavenBom "org.springframework.cloud:spring-cloud-dependencies:${springCloudVersion}"
+        }
+    }
+
+    tasks.named('test') {
+        useJUnitPlatform()
+    }
 }

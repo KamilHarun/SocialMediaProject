@@ -28,41 +28,80 @@ ext {
 }
 
 dependencies {
+    // Dependencies for Commons-ms and Security-ms projects
     implementation project(':Commons-ms')
     implementation project(':Security-ms')
+
+    // MapStruct
     implementation 'org.mapstruct:mapstruct:1.4.2.Final'
+    annotationProcessor 'org.mapstruct:mapstruct-processor:1.4.2.Final'
+
+    // SnakeYAML
     implementation 'org.yaml:snakeyaml:2.0'
+
+    // Spring Boot starters
     implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
     implementation 'org.springframework.boot:spring-boot-starter-security'
     implementation 'org.springframework.boot:spring-boot-starter-web'
+
+    // Lombok library
     compileOnly 'org.projectlombok:lombok'
-    runtimeOnly 'org.postgresql:postgresql'
     annotationProcessor 'org.projectlombok:lombok'
+
+    // Spring Cloud Config Client starter
+    implementation 'org.springframework.cloud:spring-cloud-starter-config'
+
+    // Testing with Spring Boot Starter Test and JUnit Platform
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
+    testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
+
+    // PostgreSQL driver
+    runtimeOnly 'org.postgresql:postgresql'
+
+    // Spring Security Test
     testImplementation 'org.springframework.security:spring-security-test'
+
+    // Spring Cloud Eureka Client
     implementation 'org.springframework.cloud:spring-cloud-starter-netflix-eureka-client'
+
+    // XStream library
     implementation 'com.thoughtworks.xstream:xstream:1.4.20'
+
+    // Servlet API
     implementation 'javax.servlet:javax.servlet-api:4.0.1'
-    implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
+
+    // Additional Spring Boot dependencies
     implementation 'org.springframework.boot:spring-boot-starter-validation'
     implementation 'com.fasterxml.jackson.core:jackson-annotations:2.16.1'
     implementation 'org.liquibase:liquibase-core'
     implementation 'org.modelmapper.extensions:modelmapper-spring:3.1.1'
+
+    // Spring Cloud OpenFeign
     implementation 'org.springframework.cloud:spring-cloud-starter-openfeign'
-    implementation 'org.springframework.boot:spring-boot-starter-security'
+
+    // JWT (JSON Web Token) libraries
     implementation 'io.jsonwebtoken:jjwt-api:0.11.5'
     runtimeOnly 'io.jsonwebtoken:jjwt-impl:0.11.5'
     runtimeOnly 'io.jsonwebtoken:jjwt-jackson:0.11.5'
+
+    // Jackson Databind
     implementation 'com.fasterxml.jackson.core:jackson-databind:2.16.1'
+
+    // Spring Boot starter
     implementation 'org.springframework.boot:spring-boot-starter'
+
+    // Kafka with Spring Kafka
     implementation 'org.springframework.kafka:spring-kafka'
     testImplementation 'org.springframework.kafka:spring-kafka-test'
+
+    // Springdoc OpenAPI UI
     implementation 'org.springdoc:springdoc-openapi-ui:1.6.4'
+
+    // Spring Boot DevTools
     implementation 'org.springframework.boot:spring-boot-devtools:3.2.2'
+
+    // Redis with Spring Boot starter
     implementation 'org.springframework.boot:spring-boot-starter-data-redis'
-    runtimeOnly 'org.postgresql:postgresql'
-    compileOnly 'org.projectlombok:lombok'
-    annotationProcessor 'org.projectlombok:lombok'
 }
 
 tasks.named('bootBuildImage') {

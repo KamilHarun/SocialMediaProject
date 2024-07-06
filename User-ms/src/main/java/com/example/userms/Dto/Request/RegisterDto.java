@@ -27,7 +27,7 @@ public class RegisterDto implements Serializable {
     String password;
 
     @NotBlank(message = ValidationConstants.PHONE_NUMBER_REQUIRED)
-    @Size(min = 10, max = 12, message = ValidationConstants.PHONE_NUMBER_LENGTH)
+    @Size(min = 10, max = 20, message = ValidationConstants.PHONE_NUMBER_LENGTH)
     String phoneNumber;
 
     String repeatedPassword;

@@ -28,44 +28,91 @@ ext {
 }
 
 dependencies {
+    // Dependencies for Commons-ms, Security-ms, and User-ms projects
     implementation project(':Commons-ms')
     implementation project(':Security-ms')
-    implementation 'org.mapstruct:mapstruct:1.4.2.Final'
     implementation project(path: ':User-ms')
-    implementation 'org.springframework.boot:spring-boot-starter-mail:3.1.0'
+
+    // MapStruct dependencies
+    implementation 'org.mapstruct:mapstruct:1.4.2.Final'
     annotationProcessor 'org.mapstruct:mapstruct-processor:1.4.2.Final'
-    implementation 'org.yaml:snakeyaml:2.0'
-    implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
-    implementation 'org.springframework.boot:spring-boot-starter-security'
-    implementation 'org.springframework.boot:spring-boot-starter-web'
-    compileOnly 'org.projectlombok:lombok'
-    runtimeOnly 'org.postgresql:postgresql'
-    annotationProcessor 'org.projectlombok:lombok'
+
+    // Spring Boot Mail starter
+    implementation 'org.springframework.boot:spring-boot-starter-mail:3.1.0'
+
+    // Spring Cloud Config Client starter
+    implementation 'org.springframework.cloud:spring-cloud-starter-config'
+
+    // Testing with Spring Boot Starter Test and JUnit Platform
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
-    testImplementation 'org.springframework.security:spring-security-test'
-    implementation 'org.springframework.cloud:spring-cloud-starter-netflix-eureka-client'
-    implementation 'com.thoughtworks.xstream:xstream:1.4.20'
-    implementation 'javax.servlet:javax.servlet-api:4.0.1'
+    testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
+
+    // YAML handling with SnakeYAML
+    implementation 'org.yaml:snakeyaml:2.0'
+
+    // Spring Boot Data JPA starter
     implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
-    implementation 'org.springframework.boot:spring-boot-starter-validation'
-    implementation 'com.fasterxml.jackson.core:jackson-annotations:2.16.1'
-    implementation 'org.liquibase:liquibase-core'
-    implementation 'org.modelmapper.extensions:modelmapper-spring:3.1.1'
-    implementation 'org.springframework.cloud:spring-cloud-starter-openfeign'
+
+    // Spring Security starter
     implementation 'org.springframework.boot:spring-boot-starter-security'
+
+    // Spring Web starter
+    implementation 'org.springframework.boot:spring-boot-starter-web'
+
+    // Lombok library
+    compileOnly 'org.projectlombok:lombok'
+    annotationProcessor 'org.projectlombok:lombok'
+
+    // PostgreSQL driver
+    runtimeOnly 'org.postgresql:postgresql'
+
+    // Spring Cloud Eureka Client
+    implementation 'org.springframework.cloud:spring-cloud-starter-netflix-eureka-client'
+
+    // XStream library
+    implementation 'com.thoughtworks.xstream:xstream:1.4.20'
+
+    // Servlet API
+    implementation 'javax.servlet:javax.servlet-api:4.0.1'
+
+    // Validation starter
+    implementation 'org.springframework.boot:spring-boot-starter-validation'
+
+    // Jackson Annotations
+    implementation 'com.fasterxml.jackson.core:jackson-annotations:2.16.1'
+
+    // Liquibase
+    implementation 'org.liquibase:liquibase-core'
+
+    // ModelMapper Spring extension
+    implementation 'org.modelmapper.extensions:modelmapper-spring:3.1.1'
+
+    // Spring Cloud OpenFeign
+    implementation 'org.springframework.cloud:spring-cloud-starter-openfeign'
+
+    // JWT (JSON Web Token) libraries
     implementation 'io.jsonwebtoken:jjwt-api:0.11.5'
     runtimeOnly 'io.jsonwebtoken:jjwt-impl:0.11.5'
     runtimeOnly 'io.jsonwebtoken:jjwt-jackson:0.11.5'
+
+    // Jackson Databind
     implementation 'com.fasterxml.jackson.core:jackson-databind:2.16.1'
+
+    // Spring Boot starter
     implementation 'org.springframework.boot:spring-boot-starter'
+
+    // Kafka with Spring Kafka
     implementation 'org.springframework.kafka:spring-kafka'
     testImplementation 'org.springframework.kafka:spring-kafka-test'
+
+    // Springdoc OpenAPI UI
     implementation 'org.springdoc:springdoc-openapi-ui:1.6.4'
+
+    // Spring Boot DevTools
     implementation 'org.springframework.boot:spring-boot-devtools:3.2.2'
+
+    // Redis with Spring Boot starter
     implementation 'org.springframework.boot:spring-boot-starter-data-redis'
-    runtimeOnly 'org.postgresql:postgresql'
-    compileOnly 'org.projectlombok:lombok'
-    annotationProcessor 'org.projectlombok:lombok'
 }
 
 tasks.named('bootBuildImage') {

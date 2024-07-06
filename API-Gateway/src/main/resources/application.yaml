@@ -2,17 +2,71 @@ server:
   port: 8020
 
 spring:
+  application:
+    name: api-gateway
+
   main:
     web-application-type: reactive
 
-  application:
-    name: api-gateway
   cloud:
     gateway:
       discovery:
         locator:
           enabled: true
-eureka:
-  client:
-    serviceUrl:
-      defaultZone: http://localhost:8761/eureka/
+
+      routes:
+        - id: user-ms
+          uri: lb://user-ms
+          predicates:
+            - Path=/users/**
+            - Path=/addresses/**
+          filters:
+            - RewritePath=/users/(?<segment>.*), /${segment}
+            - RewritePath=/addresses/(?<segment>.*), /addresses/${segment}
+
+
+        - id : post-ms
+          uri: lb://post-ms
+          predicates:
+            - Path=/posts/**
+            - Path=/likes/**
+
+          filters:
+            - RewritePath=/posts/(?<segment>.*), /${segment}
+            - RewritePath=/likes/(?<segment>.*), /likes/${segment}
+
+
+        - id: comment-ms
+          uri:
+           lb://comment-ms
+          predicates:
+            - Path=/comments/**
+          filters:
+            - RewritePath=/comments/(?<segment>.*), /${segment}
+
+        - id: message-ms
+          uri: lb://message-ms
+          predicates:
+            - Path=/messages/**
+          filters:
+            - RewritePath=/messages/(?<segment>.*), /${segment}
+
+
+springdoc:
+  swagger-ui:
+    urls:
+      - name: User Service
+        url: /v3/api-docs/user-ms
+      - name: Post Service
+        url: /v3/api-docs/post-ms
+      - name: Comment Service
+        url: /v3/api-docs/comment-ms
+      - name: Message Service
+        url: /v3/api-docs/message-ms
+      - name: API Gateway
+        url: /v3/api-docs/api-gateway
+
+management:
+  tracing:
+    sampling:
+      probability: 0.1

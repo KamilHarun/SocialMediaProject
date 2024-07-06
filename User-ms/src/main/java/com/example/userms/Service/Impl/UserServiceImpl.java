@@ -58,19 +58,17 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public JwtResponseDto signIn(RegisterDto registerDto) {
+        log.info("Starting registration for user with email address: {}", registerDto.getEmail());
 
-        log.info("Starting registration user for email address: {}" , registerDto.getEmail());
+        Optional<Address> address = Optional.ofNullable(addressRepo.findById(registerDto.getAddressId())
+                .orElseThrow(() -> new AddressNotFound(ADDRESS_NOT_FOUND_EXCEPTION)));
 
-        Optional<Address> address = Optional.ofNullable(addressRepo.findById(registerDto.getAddressId()).orElseThrow(() ->
-                new AddressNotFound(ADDRESS_NOT_FOUND_EXCEPTION)
-        )
-        );
         if (!registerDto.getPassword().equals(registerDto.getRepeatedPassword())) {
             log.error("Password mismatch for email: {}", registerDto.getEmail());
             throw new PasswordException(PASSWORD_DOES_NOT_MATCH_EXCEPTION);
         }
-        List<Authority> authorityList = new ArrayList<>();
 
+        Set<Authority> authorityList = new HashSet<>();
         registerDto.getAuthorities().forEach(s -> {
             UserAuthority userAuthority = UserAuthority.valueOf(s);
             authorityList.add(Authority.builder()
@@ -83,14 +81,13 @@ public class UserServiceImpl implements UserService {
                 .surname(registerDto.getSurname())
                 .email(registerDto.getEmail())
                 .password(passwordEncoder.encode(registerDto.getPassword()))
-                .authorities(authorityList)
+                .authorities(new ArrayList<>(authorityList))
                 .userType(UserType.valueOf(registerDto.getUserType()))
                 .phoneNumber(registerDto.getPhoneNumber())
                 .address(address.get())
                 .build();
         Users saveUser = userRepo.save(user);
         log.info("User saved with email: {}", saveUser.getEmail());
-
 
         Set<SimpleGrantedAuthority> authorities = saveUser.getAuthorities().stream()
                 .map(authority -> new SimpleGrantedAuthority(authority.getUserAuthority().name()))
@@ -102,21 +99,26 @@ public class UserServiceImpl implements UserService {
                 .authorities(authorities)
                 .build();
 
-        EmailDto emailDto = new EmailDto();
-        emailDto.setTo(saveUser.getEmail());
-        emailDto.setSubject("Welcome");
-        emailDto.setBody("Your registration is successful.");
-        emailFeign.sendEmail(emailDto);
-
-        kafkaTemplate.send("userTopic" , registerDto);
+//        kafkaTemplate.send("userTopic", registerDto);
 
         String token = jwtService.generateToken((org.springframework.security.core.userdetails.User) userDetails);
         log.info("Token generated for email: {}", saveUser.getEmail());
 
+        sendWelcomeEmail(saveUser.getEmail(), token);
+
         return JwtResponseDto.builder()
-                    .jwt(token)
-                    .build();
-        }
+                .jwt(token)
+                .build();
+    }
+
+    private void sendWelcomeEmail(String email, String token) {
+        EmailDto emailDto = new EmailDto();
+        emailDto.setTo(email);
+        emailDto.setSubject("Welcome");
+        emailDto.setBody("Your registration is successful.");
+
+        emailFeign.sendEmail(emailDto);
+    }
 
     @Override
     @Cacheable(cacheNames = "users")
@@ -267,7 +269,7 @@ public class UserServiceImpl implements UserService {
 
         String filePath = saveFile(file);
 
-        user.setProfilePictureUrl(filePath);
+        user.setProfilePicturesUrl(filePath);
         userRepo.save(user);
     }
 
@@ -291,8 +293,3 @@ public class UserServiceImpl implements UserService {
         }
     }
 }
-
-
-
-
-
